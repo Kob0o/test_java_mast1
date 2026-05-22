@@ -1,6 +1,5 @@
 package com.example.exercice6;
 
-import java.util.Collections;
 import java.util.List;
 
 public class RechercheVille {
@@ -29,6 +28,17 @@ public class RechercheVille {
     }
 
     public List<String> rechercher(String mot) {
-        return Collections.emptyList();
+        if ("*".equals(mot)) {
+            return villes;
+        }
+
+        if (mot.length() < 2) {
+            throw new NotFoundException("Texte de recherche invalide : moins de 2 caractères");
+        }
+
+        String motLower = mot.toLowerCase();
+        return villes.stream()
+                .filter(ville -> ville.toLowerCase().contains(motLower))
+                .toList();
     }
 }
