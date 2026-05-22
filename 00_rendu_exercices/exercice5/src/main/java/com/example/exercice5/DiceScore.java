@@ -1,14 +1,23 @@
 package com.example.exercice5;
 
-import jdk.jshell.spi.ExecutionControl;
-
 public class DiceScore {
 
-    public DiceScore(Ide de) throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("Not implemented");
+    private final Ide de;
+
+    public DiceScore(Ide de) {
+        this.de = de;
     }
 
-    public int getScore() throws ExecutionControl.NotImplementedException {
-        throw new ExecutionControl.NotImplementedException("Not implemented");
+    public int getScore() {
+        int scoreFirst = de.getRoll();
+        int scoreSecond = de.getRoll();
+
+        if (scoreFirst == scoreSecond) {
+            if (scoreFirst == 6) {
+                return 30;
+            }
+            return scoreFirst * 2 + 10;
+        }
+        return scoreFirst < scoreSecond ? scoreSecond : scoreFirst;
     }
 }
