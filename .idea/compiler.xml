@@ -8,9 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="demo_base_test" />
         <module name="demo_base_test (1)" />
+        <module name="demo_tdd_mockito" />
+        <module name="demo_tdd_mockito (1)" />
         <module name="demo_base_test (2)" />
         <module name="demo_base_test (3)" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo_tdd_mockito (2)" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>
