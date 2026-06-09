@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="exercice6" />
+        <module name="exercice7" />
         <module name="test_bdd (1)" />
         <module name="demo_base_test" />
         <module name="demo_base_test (1)" />
