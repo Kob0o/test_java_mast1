@@ -18,10 +18,6 @@ public class PriceCalculator {
         return computePriceWithVat(price, vatRate);
     }
 
-    private double stubValue() {
-        return 0;
-    }
-
     private double computeTotalPrice(double unitPrice, int quantity) {
         if (unitPrice < 0) {
             throw new IllegalArgumentException("Le prix unitaire ne doit pas être négatif.");
