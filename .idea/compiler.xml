@@ -12,6 +12,7 @@
         <module name="demo_base_test" />
         <module name="demo_base_test (1)" />
         <module name="demo_base_tdd" />
+        <module name="demo_base_tdd (1)" />
         <module name="demo_tdd_mockito" />
         <module name="demo_tdd_mockito (1)" />
         <module name="demo_base_test (2)" />
