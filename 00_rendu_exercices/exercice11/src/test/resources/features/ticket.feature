@@ -7,17 +7,19 @@ Feature: API de gestion des tickets
     Then la reponse HTTP doit etre 201
     And la reponse contient le titre "Bug login"
 
-  Scenario: Recuperation d un ticket cree
+  Scenario: Resolution d un ticket
     Given aucun ticket n existe dans l API
-    When je cree un ticket avec le titre "Ticket a retrouver" et la priorite "LOW"
-    And je demande le ticket cree
+    When je cree un ticket avec le titre "Bug urgent" et la priorite "HIGH"
+    And je mets a jour le statut du ticket cree vers "RESOLVED"
     Then la reponse HTTP doit etre 200
-    And la reponse contient le titre "Ticket a retrouver"
+    And la reponse contient le statut "RESOLVED"
 
-  Scenario: Refus d une creation invalide
+  Scenario: Refus de modification d un ticket deja resolu
     Given aucun ticket n existe dans l API
-    When je cree un ticket avec le titre "" et la priorite "LOW"
-    Then la reponse HTTP doit etre 400
+    When je cree un ticket avec le titre "Ticket ferme" et la priorite "LOW"
+    And je mets a jour le statut du ticket cree vers "RESOLVED"
+    And je mets a jour le statut du ticket cree vers "IN_PROGRESS"
+    Then la reponse HTTP doit etre 409
     And la reponse contient un message d erreur
 
   Scenario: Ticket introuvable
@@ -25,10 +27,3 @@ Feature: API de gestion des tickets
     When je demande le ticket avec l identifiant 99
     Then la reponse HTTP doit etre 404
     And la reponse contient un message d erreur
-
-  Scenario: Mise a jour du statut d un ticket
-    Given aucun ticket n existe dans l API
-    When je cree un ticket avec le titre "Bug API" et la priorite "MEDIUM"
-    And je mets a jour le statut du ticket cree vers "IN_PROGRESS"
-    Then la reponse HTTP doit etre 200
-    And la reponse contient le statut "IN_PROGRESS"

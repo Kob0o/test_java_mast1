@@ -31,7 +31,7 @@ class TicketApiIntegrationTest {
     }
 
     @Test
-    void shouldCreateAndRetrieveTicket_withRealSpringContext() throws Exception {
+    void shouldCreateRetrieveAndUpdateTicket_withRealSpringContext() throws Exception {
         mockMvc.perform(post("/api/tickets")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"title\":\"Bug login\",\"priority\":\"HIGH\"}"))
@@ -43,14 +43,6 @@ class TicketApiIntegrationTest {
         mockMvc.perform(get("/api/tickets/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Bug login"));
-    }
-
-    @Test
-    void shouldUpdateStatus_afterCreatingTicket() throws Exception {
-        mockMvc.perform(post("/api/tickets")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"title\":\"API issue\",\"priority\":\"MEDIUM\"}"))
-                .andExpect(status().isCreated());
 
         mockMvc.perform(patch("/api/tickets/1/status")
                         .contentType(MediaType.APPLICATION_JSON)
