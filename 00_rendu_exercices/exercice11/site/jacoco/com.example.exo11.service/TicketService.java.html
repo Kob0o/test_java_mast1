@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">demo-api-spring-tdd-bdd</a> &gt; <a href="index.source.html" class="el_package">com.example.exo11.service</a> &gt; <span class="el_source">TicketService.java</span></div><h1>TicketService.java</h1><pre class="source lang-java linenums">package com.example.exo11.service;
+
+import com.example.exo11.exception.InvalidStatusTransitionException;
+import com.example.exo11.exception.TicketNotFoundException;
+import com.example.exo11.model.Priority;
+import com.example.exo11.model.Ticket;
+import com.example.exo11.model.TicketStatus;
+import com.example.exo11.repository.TicketRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class TicketService {
+
+    private final TicketRepository ticketRepository;
+
+<span class="fc" id="L18">    public TicketService(TicketRepository ticketRepository) {</span>
+<span class="fc" id="L19">        this.ticketRepository = ticketRepository;</span>
+<span class="fc" id="L20">    }</span>
+
+    public Ticket createTicket(String title, Priority priority) {
+<span class="fc" id="L23">        Ticket ticket = new Ticket();</span>
+<span class="fc" id="L24">        ticket.setTitle(title);</span>
+<span class="fc" id="L25">        ticket.setPriority(priority);</span>
+<span class="fc" id="L26">        ticket.setStatus(TicketStatus.OPEN);</span>
+<span class="fc" id="L27">        return ticketRepository.save(ticket);</span>
+    }
+
+    public Ticket getTicketById(Long id) {
+<span class="fc" id="L31">        return ticketRepository.findById(id)</span>
+<span class="fc" id="L32">                .orElseThrow(() -&gt; new TicketNotFoundException(id));</span>
+    }
+
+    public List&lt;Ticket&gt; getAllTickets() {
+<span class="fc" id="L36">        return ticketRepository.findAll();</span>
+    }
+
+    public Ticket updateStatus(Long id, TicketStatus newStatus) {
+<span class="fc" id="L40">        Ticket ticket = ticketRepository.findById(id)</span>
+<span class="fc" id="L41">                .orElseThrow(() -&gt; new TicketNotFoundException(id));</span>
+
+<span class="fc" id="L43">        TicketStatus current = ticket.getStatus();</span>
+
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (!isValidTransition(current, newStatus)) {</span>
+<span class="fc" id="L46">            throw new InvalidStatusTransitionException(current, newStatus);</span>
+        }
+
+<span class="fc" id="L49">        ticket.setStatus(newStatus);</span>
+<span class="fc" id="L50">        return ticketRepository.save(ticket);</span>
+    }
+
+    private boolean isValidTransition(TicketStatus current, TicketStatus newStatus) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (current == TicketStatus.RESOLVED) {</span>
+<span class="fc" id="L55">            return false;</span>
+        }
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (current == TicketStatus.OPEN) {</span>
+<span class="pc bpc" id="L58" title="1 of 4 branches missed.">            return newStatus == TicketStatus.IN_PROGRESS || newStatus == TicketStatus.RESOLVED;</span>
+        }
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">        if (current == TicketStatus.IN_PROGRESS) {</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            return newStatus == TicketStatus.RESOLVED;</span>
+        }
+<span class="nc" id="L63">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,5 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+demo-api-spring-tdd-bdd,com.example.exo11.service,TicketService,3,105,2,12,1,24,2,13,0,8
+demo-api-spring-tdd-bdd,com.example.exo11.repository,InMemoryTicketRepository,12,47,0,2,4,11,1,5,1,4
+demo-api-spring-tdd-bdd,com.example.exo11.controller,TicketExceptionHandler,0,39,0,0,0,16,0,5,0,5
+demo-api-spring-tdd-bdd,com.example.exo11.controller,TicketController,11,45,0,0,5,12,1,4,1,4
