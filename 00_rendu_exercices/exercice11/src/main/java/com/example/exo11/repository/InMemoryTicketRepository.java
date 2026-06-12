@@ -38,4 +38,10 @@ public class InMemoryTicketRepository implements TicketRepository {
                 .sorted(Comparator.comparing(Ticket::getId))
                 .toList();
     }
+
+    @Override
+    public void deleteAll() {
+        tickets.clear();
+        sequence.set(0);
+    }
 }
