@@ -19,12 +19,12 @@
         <module name="demo_base_tdd (1)" />
         <module name="demo_tdd_mockito" />
         <module name="test_bdd" />
-        <module name="exercice7 (1)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="demo_tdd_mockito (2)" target="21" />
       <module name="exercice5" target="21" />
+      <module name="exercice7 (1)" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
