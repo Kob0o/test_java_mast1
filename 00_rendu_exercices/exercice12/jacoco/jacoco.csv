@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+demo-api-spring-tdd-bdd,com.example.exo12.service,RoomService,4,21,0,0,1,7,1,2,1,2
+demo-api-spring-tdd-bdd,com.example.exo12.service,ReservationService,12,125,3,9,1,27,5,9,2,6
+demo-api-spring-tdd-bdd,com.example.exo12.controller,RoomController,11,25,0,0,4,7,1,2,1,2
+demo-api-spring-tdd-bdd,com.example.exo12.controller,ApiExceptionHandler,7,47,0,0,2,13,1,6,1,6
+demo-api-spring-tdd-bdd,com.example.exo12.controller,ReservationController,0,47,0,0,0,15,0,4,0,4
+demo-api-spring-tdd-bdd,com.example.exo12.repository,InMemoryReservationRepository,1,70,1,3,0,15,1,8,0,7
+demo-api-spring-tdd-bdd,com.example.exo12.repository,InMemoryRoomRepository,12,47,1,1,3,11,2,4,1,4

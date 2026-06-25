@@ -1,6 +1,5 @@
 package com.example.exo12.service;
 
-import com.example.exo12.exception.NotImplementedException;
 import com.example.exo12.model.Room;
 import com.example.exo12.repository.RoomRepository;
 import org.springframework.stereotype.Service;
@@ -17,10 +16,13 @@ public class RoomService {
     }
 
     public Room createRoom(String name, int capacity) {
-        throw new NotImplementedException();
+        Room room = new Room();
+        room.setName(name);
+        room.setCapacity(capacity);
+        return roomRepository.save(room);
     }
 
     public List<Room> getAllRooms() {
-        throw new NotImplementedException();
+        return roomRepository.findAll();
     }
 }
