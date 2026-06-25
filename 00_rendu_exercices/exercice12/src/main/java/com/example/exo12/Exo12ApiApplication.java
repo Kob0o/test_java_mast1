@@ -1,0 +1,12 @@
+package com.example.exo12;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Exo12ApiApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Exo12ApiApplication.class, args);
+    }
+}

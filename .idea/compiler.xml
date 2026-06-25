@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="exercice6" />
         <module name="exercice7" />
+        <module name="demo-api-spring-tdd-bdd (2)" />
         <module name="demo_base_test (1)" />
         <module name="demo_base_tdd" />
         <module name="demo_tdd_mockito (1)" />
@@ -32,6 +33,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="demo-api-spring-tdd-bdd" options="-parameters" />
       <module name="demo-api-spring-tdd-bdd (1)" options="-parameters" />
+      <module name="demo-api-spring-tdd-bdd (2)" options="-parameters" />
     </option>
   </component>
 </project>
