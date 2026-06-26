@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
-    name: Exécuter les tests Maven
+  test-exo13:
+    name: Exo 13 - Tests
     runs-on: ubuntu-latest
 
     defaults:
@@ -23,6 +23,35 @@ jobs:
           java-version: 21
           cache: maven
           cache-dependency-path: 00_rendu_exercices/exercice13/pom.xml
+
+      - name: Vérifier la version de Java
+        run: java -version
+
+      - name: Vérifier la version de Maven
+        run: mvn -version
+
+      - name: Lancer les tests
+        run: mvn clean test
+
+  test-exo14:
+    name: Exo 14 - Tests
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: 00_rendu_exercices/exercice14
+
+    steps:
+      - name: Récupérer le code du dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+          cache-dependency-path: 00_rendu_exercices/exercice14/pom.xml
 
       - name: Vérifier la version de Java
         run: java -version

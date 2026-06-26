@@ -47,8 +47,8 @@ public class ReservationStepDefinitions {
         Loan loan = new Loan();
         loan.setMemberId(memberId);
         loan.setItemId(itemId);
-        loan.setBorrowDate(LocalDate.of(2025, 3, 1));
-        loan.setDueDate(LocalDate.of(2025, 3, 22));
+        loan.setBorrowDate(LocalDate.of(2026, 3, 1));
+        loan.setDueDate(LocalDate.of(2026, 3, 22));
         loanRepository.save(loan);
     }
 
@@ -61,9 +61,9 @@ public class ReservationStepDefinitions {
             Loan lateReturn = new Loan();
             lateReturn.setMemberId(memberId);
             lateReturn.setItemId("BOOK-LATE-" + i);
-            lateReturn.setBorrowDate(LocalDate.of(2025, 1, 1));
-            lateReturn.setDueDate(LocalDate.of(2025, 1, 22));
-            lateReturn.setReturnDate(LocalDate.of(2025, 2, i));
+            lateReturn.setBorrowDate(LocalDate.of(2026, 1, 1));
+            lateReturn.setDueDate(LocalDate.of(2026, 1, 22));
+            lateReturn.setReturnDate(LocalDate.of(2026, 2, i));
             lateReturn.setMajorLate(true);
             loanRepository.save(lateReturn);
         }
@@ -74,7 +74,7 @@ public class ReservationStepDefinitions {
         Reservation reservation = new Reservation();
         reservation.setMemberId(memberId);
         reservation.setItemId(itemId);
-        reservation.setCreatedAt(LocalDate.of(2025, 3, 5));
+        reservation.setCreatedAt(LocalDate.of(2026, 3, 5));
         reservation.setStatus(ReservationStatus.PENDING);
         reservationRepository.save(reservation);
     }
@@ -97,7 +97,7 @@ public class ReservationStepDefinitions {
                 .orElseThrow(() -> new IllegalStateException("No active loan for " + itemId));
 
         assertThat(loan.getMemberId()).isEqualTo(memberId);
-        loanService.returnItem(loan.getId(), LocalDate.of(2025, 3, 15));
+        loanService.returnItem(loan.getId(), LocalDate.of(2026, 3, 15));
     }
 
     @Then("the reservation is accepted")

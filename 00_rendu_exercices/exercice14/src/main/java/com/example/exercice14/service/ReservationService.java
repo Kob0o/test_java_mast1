@@ -13,7 +13,7 @@ public class ReservationService {
     private final LoanRepository loanRepository;
 
     public ReservationService(ReservationRepository reservationRepository,
-                              LoanRepository loanRepository) {
+            LoanRepository loanRepository) {
         this.reservationRepository = reservationRepository;
         this.loanRepository = loanRepository;
     }
