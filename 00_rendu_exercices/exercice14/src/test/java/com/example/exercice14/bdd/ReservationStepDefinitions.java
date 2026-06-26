@@ -41,9 +41,6 @@ public class ReservationStepDefinitions {
 
     @Given("item {string} is borrowed by member {string}")
     public void itemIsBorrowed(String itemId, String memberId) {
-        loanRepository.deleteAll();
-        reservationRepository.deleteAll();
-
         Loan loan = new Loan();
         loan.setMemberId(memberId);
         loan.setItemId(itemId);
@@ -57,13 +54,15 @@ public class ReservationStepDefinitions {
         loanRepository.deleteAll();
         reservationRepository.deleteAll();
 
+        int currentYear = LocalDate.now().getYear();
+
         for (int i = 1; i <= 3; i++) {
             Loan lateReturn = new Loan();
             lateReturn.setMemberId(memberId);
             lateReturn.setItemId("BOOK-LATE-" + i);
-            lateReturn.setBorrowDate(LocalDate.of(2026, 1, 1));
-            lateReturn.setDueDate(LocalDate.of(2026, 1, 22));
-            lateReturn.setReturnDate(LocalDate.of(2026, 2, i));
+            lateReturn.setBorrowDate(LocalDate.of(currentYear, 1, 1));
+            lateReturn.setDueDate(LocalDate.of(currentYear, 1, 22));
+            lateReturn.setReturnDate(LocalDate.of(currentYear, 2, i));
             lateReturn.setMajorLate(true);
             loanRepository.save(lateReturn);
         }
