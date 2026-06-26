@@ -115,10 +115,6 @@ class AccountServiceTest {
 
     @Test
     void shouldRejectDeposit_whenAmountIsZero() {
-        // Arrange
-        when(accountRepository.findByNumber("ACC-001"))
-                .thenReturn(Optional.of(new Account("ACC-001", "Alice", BigDecimal.TEN)));
-
         // Act & Assert
         assertThrows(InvalidAmountException.class,
                 () -> accountService.deposit("ACC-001", BigDecimal.ZERO));
@@ -127,10 +123,6 @@ class AccountServiceTest {
 
     @Test
     void shouldRejectDeposit_whenAmountIsNegative() {
-        // Arrange
-        when(accountRepository.findByNumber("ACC-001"))
-                .thenReturn(Optional.of(new Account("ACC-001", "Alice", BigDecimal.TEN)));
-
         // Act & Assert
         assertThrows(InvalidAmountException.class,
                 () -> accountService.deposit("ACC-001", BigDecimal.valueOf(-5)));
@@ -152,10 +144,6 @@ class AccountServiceTest {
 
     @Test
     void shouldRejectWithdraw_whenAmountIsZero() {
-        // Arrange
-        when(accountRepository.findByNumber("ACC-001"))
-                .thenReturn(Optional.of(new Account("ACC-001", "Alice", BigDecimal.TEN)));
-
         // Act & Assert
         assertThrows(InvalidAmountException.class,
                 () -> accountService.withdraw("ACC-001", BigDecimal.ZERO));
@@ -163,10 +151,6 @@ class AccountServiceTest {
 
     @Test
     void shouldRejectWithdraw_whenAmountIsNegative() {
-        // Arrange
-        when(accountRepository.findByNumber("ACC-001"))
-                .thenReturn(Optional.of(new Account("ACC-001", "Alice", BigDecimal.TEN)));
-
         // Act & Assert
         assertThrows(InvalidAmountException.class,
                 () -> accountService.withdraw("ACC-001", BigDecimal.valueOf(-1)));
