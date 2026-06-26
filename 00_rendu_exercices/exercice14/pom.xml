@@ -130,6 +130,8 @@
                         <exclude>com/example/exercice14/Exercice14ApiApplication.class</exclude>
                         <exclude>com/example/exercice14/model/*.class</exclude>
                         <exclude>com/example/exercice14/exception/*.class</exclude>
+                        <exclude>com/example/exercice14/bdd/CucumberSpringConfiguration.class</exclude>
+                        <exclude>com/example/exercice14/bdd/RunCucumberTest.class</exclude>
                     </excludes>
                 </configuration>
 

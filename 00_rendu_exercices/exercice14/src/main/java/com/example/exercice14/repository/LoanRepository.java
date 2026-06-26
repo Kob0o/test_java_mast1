@@ -13,4 +13,6 @@ public interface LoanRepository {
     Optional<Loan> findActiveByItemId(String itemId);
 
     int countMajorLateReturnsInYear(String memberId, int year);
+
+    void deleteAll();
 }
