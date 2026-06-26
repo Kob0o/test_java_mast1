@@ -11,9 +11,11 @@
         <module name="demo-api-spring-tdd-bdd (2)" />
         <module name="demo_base_test (1)" />
         <module name="demo_base_tdd" />
+        <module name="demo-api-spring-tdd-bdd (3)" />
         <module name="demo_tdd_mockito (1)" />
         <module name="demo-api-spring-tdd-bdd (1)" />
         <module name="demo_base_test (2)" />
+        <module name="demo-api-spring-tdd-bdd (4)" />
         <module name="demo_base_test (3)" />
         <module name="demo-api-spring-tdd-bdd" />
         <module name="test_bdd (1)" />
@@ -34,6 +36,8 @@
       <module name="demo-api-spring-tdd-bdd" options="-parameters" />
       <module name="demo-api-spring-tdd-bdd (1)" options="-parameters" />
       <module name="demo-api-spring-tdd-bdd (2)" options="-parameters" />
+      <module name="demo-api-spring-tdd-bdd (3)" options="-parameters" />
+      <module name="demo-api-spring-tdd-bdd (4)" options="-parameters" />
     </option>
   </component>
 </project>
