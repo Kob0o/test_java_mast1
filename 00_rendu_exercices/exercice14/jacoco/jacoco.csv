@@ -1,0 +1,5 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+demo-api-spring-tdd-bdd,com.example.exercice14.service,ReservationService,1,101,1,5,1,27,1,5,0,3
+demo-api-spring-tdd-bdd,com.example.exercice14.service,LoanService,0,134,0,10,0,29,0,12,0,7
+demo-api-spring-tdd-bdd,com.example.exercice14.repository,InMemoryLoanRepository,2,106,2,6,0,21,2,13,0,11
+demo-api-spring-tdd-bdd,com.example.exercice14.repository,InMemoryReservationRepository,1,71,1,3,0,16,1,8,0,7

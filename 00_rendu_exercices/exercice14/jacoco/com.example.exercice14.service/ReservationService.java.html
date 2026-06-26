@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReservationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">demo-api-spring-tdd-bdd</a> &gt; <a href="index.source.html" class="el_package">com.example.exercice14.service</a> &gt; <span class="el_source">ReservationService.java</span></div><h1>ReservationService.java</h1><pre class="source lang-java linenums">package com.example.exercice14.service;
+
+import com.example.exercice14.exception.ItemAvailableException;
+import com.example.exercice14.exception.MemberSuspendedException;
+import com.example.exercice14.model.Loan;
+import com.example.exercice14.model.Reservation;
+import com.example.exercice14.model.ReservationStatus;
+import com.example.exercice14.repository.LoanRepository;
+import com.example.exercice14.repository.ReservationRepository;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+
+@Service
+public class ReservationService {
+
+    private static final int LOAN_DURATION_DAYS = 21;
+    private static final int SUSPENSION_THRESHOLD = 3;
+
+    private final ReservationRepository reservationRepository;
+    private final LoanRepository loanRepository;
+
+    public ReservationService(ReservationRepository reservationRepository,
+<span class="fc" id="L24">                              LoanRepository loanRepository) {</span>
+<span class="fc" id="L25">        this.reservationRepository = reservationRepository;</span>
+<span class="fc" id="L26">        this.loanRepository = loanRepository;</span>
+<span class="fc" id="L27">    }</span>
+
+    public Reservation reserve(String memberId, String itemId) {
+<span class="fc" id="L30">        int year = LocalDate.now().getYear();</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (loanRepository.countMajorLateReturnsInYear(memberId, year) &gt;= SUSPENSION_THRESHOLD) {</span>
+<span class="fc" id="L32">            throw new MemberSuspendedException(memberId);</span>
+        }
+
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (loanRepository.findActiveByItemId(itemId).isEmpty()) {</span>
+<span class="fc" id="L36">            throw new ItemAvailableException(itemId);</span>
+        }
+
+<span class="fc" id="L39">        Reservation reservation = new Reservation();</span>
+<span class="fc" id="L40">        reservation.setMemberId(memberId);</span>
+<span class="fc" id="L41">        reservation.setItemId(itemId);</span>
+<span class="fc" id="L42">        reservation.setCreatedAt(LocalDate.now());</span>
+<span class="fc" id="L43">        reservation.setStatus(ReservationStatus.PENDING);</span>
+
+<span class="fc" id="L45">        return reservationRepository.save(reservation);</span>
+    }
+
+    public void fulfillNextReservation(String itemId, LocalDate borrowDate) {
+<span class="fc" id="L49">        var pending = reservationRepository.findPendingByItemId(itemId);</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">        if (pending.isEmpty()) {</span>
+<span class="nc" id="L51">            return;</span>
+        }
+
+<span class="fc" id="L54">        Reservation first = pending.getFirst();</span>
+<span class="fc" id="L55">        first.setStatus(ReservationStatus.FULFILLED);</span>
+<span class="fc" id="L56">        reservationRepository.save(first);</span>
+
+<span class="fc" id="L58">        Loan loan = new Loan();</span>
+<span class="fc" id="L59">        loan.setMemberId(first.getMemberId());</span>
+<span class="fc" id="L60">        loan.setItemId(itemId);</span>
+<span class="fc" id="L61">        loan.setBorrowDate(borrowDate);</span>
+<span class="fc" id="L62">        loan.setDueDate(borrowDate.plusDays(LOAN_DURATION_DAYS));</span>
+<span class="fc" id="L63">        loanRepository.save(loan);</span>
+<span class="fc" id="L64">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
